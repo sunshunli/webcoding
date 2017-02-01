@@ -1,25 +1,34 @@
+<?php
+/**
+ * TestGuest Version1.0
+ * ================================================
+ * Copy 2017
+ * Email: sunshunli@hotmail.com
+ * ================================================
+ * Author: Stanley Sun
+ * Date: ${date}
+ */
+// 定义一个常量，用来授权调用includes里面的文件
+define('IN_TG', true);
+
+//引入公共文件, 转换成硬路径，速度更快
+require dirname(__FILE__) . '/includes/common.inc.php';
+?>
 <!doctype html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>test</title>
+    <title>多用户留言系统首页</title>
+    <link rel="shortcuticon" href="favicon.ico" />
     <link rel="stylesheet" type="text/css" href="styles/style1/basic.css">
     <link rel="stylesheet" type="text/css" href="styles/style1/index.css">
+
 </head>
 <body>
 
-    <div id="header">
-        <h1><a href="index.php">test</a></h1>
-        <ul>
-            <li>首页</li>
-            <li>注册</li>
-            <li>登录</li>
-            <li>个人中心</li>
-            <li>风格</li>
-            <li>管理</li>
-            <li>退出</li>
-        </ul>
-    </div>
+    <?php
+        require ROOT_PATH . 'includes/header.inc.php';
+    ?>
 
     <div id="list">
         <h2>帖子列表</h2>
@@ -33,10 +42,9 @@
         <h2>最新图片</h2>
     </div>
 
-    <div id="footer">
-        <p>版权所有 翻版必究</p>
-        <p>本程序由<span>瓢城Web俱乐部</span>提供 源代码可以任意修改或发布 (c) yc60.com</p>
-    </div>
+    <?php
+        require ROOT_PATH . 'includes/footer.inc.php';
+    ?>
 
 </body>
 </html>
