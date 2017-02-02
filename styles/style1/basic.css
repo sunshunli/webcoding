@@ -51,6 +51,16 @@ h2 {
     display: inline;
 }
 
+#header ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+#header ul li a:hover {
+    color: #f00;
+    text-decoration: underline;
+}
+
 #footer {
     clear: both;
     width: auto;
