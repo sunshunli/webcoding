@@ -13,6 +13,10 @@ define('IN_TG', true);
 
 //引入公共文件, 转换成硬路径，速度更快
 require dirname(__FILE__) . '/includes/common.inc.php';
+
+//执行耗时
+$_start_time = _runtime();
+
 ?>
 <!doctype html>
 <html>

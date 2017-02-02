@@ -20,3 +20,6 @@ define('ROOT_PATH', substr(dirname(__FILE__), 0, -8));
 if (PHP_VERSION < '4.1.0') {
     exit('Version is too Low!');
 }
+
+//引入核心函数库
+require ROOT_PATH .'includes/global.func.php';
