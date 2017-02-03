@@ -11,6 +11,9 @@
 // 定义一个常量，用来授权调用includes里面的文件
 define('IN_TG', true);
 
+//定义一个常量，用来指定本页的内容
+define('SCRIPT', 'index');
+
 //引入公共文件, 转换成硬路径，速度更快
 require dirname(__FILE__) . '/includes/common.inc.php';
 
@@ -18,11 +21,11 @@ require dirname(__FILE__) . '/includes/common.inc.php';
 <!doctype html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <title>多用户留言系统-首页</title>
-    <link rel="shortcuticon" href="favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="styles/style1/basic.css">
-    <link rel="stylesheet" type="text/css" href="styles/style1/index.css">
+    <?php
+        require ROOT_PATH . "includes/title.inc.php";
+    ?>
 
 </head>
 <body>
