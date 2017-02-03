@@ -14,6 +14,11 @@ if (!defined('IN_TG')) {
     exit('Access Defined!');
 }
 
+//防止非HTML页面调用
+if (!defined('SCRIPT')) {
+    exit('Script Error!');
+}
+
 ?>
 <link rel="shortcuticon" href="favicon.ico" />
 <link rel="stylesheet" type="text/css" href="styles/style1/basic.css">

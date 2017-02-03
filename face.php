@@ -28,24 +28,20 @@ require dirname(__FILE__) . '/includes/common.inc.php';
         require ROOT_PATH . "includes/title.inc.php";
     ?>
 
-    <div id="face">
-        <h2>选择头像</h2>
-        <dl>
-            <?php foreach(range(1, 9) as $num) {?>
-                <dd><img src="face/m0<?php echo $num;?>.gif" alt="头像<?php echo $num;?>"></dd>
-            <?php }?>
-            <?php foreach(range(10, 64) as $num) {?>
-                <dd><img src="face/m<?php echo $num;?>.gif" alt="头像<?php echo $num;?>"></dd>
-            <?php }?>
-        </dl>
-    </div>
-
-
-
-
 </head>
 <body>
+<div id="face">
+    <h2>选择头像</h2>
+    <dl>
+        <?php foreach(range(1, 9) as $num) {?>
+            <dd><img src="face/m0<?php echo $num;?>.gif" alt= "face/m0<?php echo $num;?>.gif" title="头像<?php echo $num;?>"></dd>
+        <?php }?>
+        <?php foreach(range(10, 64) as $num) {?>
+            <dd><img src="face/m<?php echo $num;?>.gif" alt= "face/m<?php echo $num;?>.gif" title="头像<?php echo $num;?>"></dd>
+        <?php }?>
+    </dl>
+</div>
 
-
+<script type="text/javascript" src="js/opener.js"></script>
 </body>
 </html>

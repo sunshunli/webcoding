@@ -45,7 +45,7 @@ require dirname(__FILE__) . '/includes/common.inc.php';
                 <dd>密码提示：<input type="text" name="passt" class="text" /> (*必填，至少两位)</dd>
                 <dd>密码回答：<input type="text" name="passd" class="text" /> (*必填，至少两位)</dd>
                 <dd>性       别：<input type="radio" name="sex" value="男" checked="checked" /> 男 <input type="radio" name="sex" value="女" /> 女</dd>
-                <dd class="face"><img src="face/m01.gif" alt="头像选择" id="facing" )"></dd>
+                <dd class="face"><input type="hidden" name="face" value="face/m01.gif" id="face"><img src="face/m01.gif" alt="头像选择" id="faceimg" )"></dd>
                 <dd>电子邮件：<input type="text" name="email" class="text" /></dd>
                 <dd>    Q Q   ： <input type="text" name="qq" class="text" /></dd>
                 <dd> 主页地址：<input type="text" name="url" class="text" value="http://" /></dd>
