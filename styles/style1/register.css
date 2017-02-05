@@ -33,23 +33,29 @@
     cursor: pointer;
 }
 
-#register dl dt  dd input.text {
+#register dl  dd input.text {
     width: 220px;
     height: 19px;
     border:  1px dashed #333;
     background: #fff;
 }
 
-#register dl dt  dd input.yzm {
+#register dl dd input.yzm {
     width: 60px;;
 }
 
-#register dl dt  dd input.submit {
+#register dl dd img#code {
+    position: relative;
+    top: 8px;
+    cursor: pointer;
+}
+
+#register form dl dd input.submit {
     width: 60px;
     height: 19px;
     border: 1px dashed #333;
     background: #fff;
     cursor: pointer;
     margin: 0 0 0 120px;
-
 }
+
