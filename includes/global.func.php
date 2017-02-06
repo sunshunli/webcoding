@@ -20,6 +20,11 @@ function _runtime() {
     return $_mtime[1] + $_mtime[0];
 }
 
+function _alert_back($_info) {
+    echo "<script type='text/javascript'>alert('". $_info ."');history.back();</script>";
+    exit();
+}
+
 /**
  *_code()是验证码函数
  * @access public

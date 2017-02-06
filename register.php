@@ -8,7 +8,7 @@
 * Author: Stanley Sun
 * Date: 2/2/17
 */
-
+session_start();
 // 定义一个常量，用来授权调用includes里面的文件
 define('IN_TG', true);
 
@@ -17,6 +17,17 @@ define('SCRIPT', 'register');
 
 //引入公共文件, 转换成硬路径，速度更快
 require dirname(__FILE__) . '/includes/common.inc.php';
+
+//判断是否提交
+if ($_GET['action'] == 'register') {
+    //为了防止恶意注册，跨站攻击
+    if (!($_POST['yzm'] == $_SESSION['code'])) {
+        _alert_back('验证码不正确！');
+    }
+    //创建一个空数组用来存放提交过来的合法数据
+    $_clean = array();
+    $_clean['username'] = $_POST['usernmae'];
+}
 
 ?>
 <!DOCTYPE html>
@@ -36,7 +47,7 @@ require dirname(__FILE__) . '/includes/common.inc.php';
 
     <div id="register">
         <h2>会员注册</h2>
-        <form method="post" action="post.php">
+        <form method="post" action="register.php?action=register">
             <dl>
                 <dt>请认真填写以下内容</dt>
                 <dd>用 户 名： <input type="text" name="username" class="text" /> (*必填，至少两位)</dd>
