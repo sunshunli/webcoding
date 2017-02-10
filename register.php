@@ -42,7 +42,7 @@ if ($_GET['action'] == 'register') {
     $_clean['qq'] = _check_qq($_POST['qq']);
     $_clean['url'] = _check_url($_POST['url']);
 
-    print_r($_clean);
+//    print_r($_clean);
 } else {
     $_SESSION['uniqid'] = $_uniqid = _sha1_uniqid();
 }
