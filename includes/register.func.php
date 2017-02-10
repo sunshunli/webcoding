@@ -98,3 +98,56 @@ function _check_answer($_ques, $_answ, $_min_num, $_max_num) {
     //加密返回
     return sha1($_answ);
 }
+
+/**
+ * _check_email() 检查邮箱是否合法
+ * @access public
+ * @param string $_string 提交的邮箱地址
+ * @return string $_string 验证后的邮箱地址
+ */
+function _check_email($_string) {
+    if (empty($_string)) {
+        return null;
+    } else {
+        if (!preg_match('/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/', $_string)) {
+            _alert_back('邮件格式不正确!');
+        }
+    }
+    return $_string;
+}
+
+/**
+ * _check_qq 检查QQ号码合法
+ * @access  public
+ * @param int $_string QQ号码
+ * @return int $_string QQ号码
+ */
+function _check_qq($_string) {
+    if (empty($_string)) {
+        return null;
+    } else {
+        if (!preg_match('/^[1-9]{1}[0-9]{4,9}$/', $_string)) {
+            _alert_back('QQ号码不正确！');
+        }
+    }
+
+    return $_string;
+}
+
+/**
+ * _check_url 网址验证
+ * @access public
+ * @param string $_string 网址
+ * @return string $_string 返回过滤的网址
+ */
+function _check_url($_string) {
+    if (empty($_string) || ($_string == 'http://')) {
+        return null;
+    } else {
+        if (!preg_match('/^http(s)?:\/\/(\w+\.)?[\w\-\.]+(\.\w+)+$/', $_string)) {
+            _alert_back('网址不正确!');
+        }
+    }
+
+    return $_string;
+}
