@@ -30,9 +30,10 @@ if ($_GET['action'] == 'register') {
     //创建一个空数组用来存放提交过来的合法数据
     $_clean = array();
     $_clean['username'] = _check_username($_POST['username'], 2, 20);
-
-
-
+    $_clean['password'] = _check_password($_POST['password'], $_POST['notpassword'], 6);
+    $_clean['question'] = _check_question($_POST['question'], 2, 20);
+    $_clean['answer'] = _check_answer($_POST['question'], $_POST['answer'], 2, 20);
+    print_r($_clean);
 }
 
 ?>
@@ -59,8 +60,8 @@ if ($_GET['action'] == 'register') {
                 <dd>用 户 名： <input type="text" name="username" class="text" /> (*必填，至少两位)</dd>
                 <dd>密      码： <input type="password" name="password" class="text" /> (*必填，至少六位)</dd>
                 <dd>确认密码：<input type="password" name="notpassword" class="text" /> (*必填，至少六位)</dd>
-                <dd>密码提示：<input type="text" name="passt" class="text" /> (*必填，至少两位)</dd>
-                <dd>密码回答：<input type="text" name="passd" class="text" /> (*必填，至少两位)</dd>
+                <dd>密码提示：<input type="text" name="question" class="text" /> (*必填，至少两位)</dd>
+                <dd>密码回答：<input type="text" name="answer" class="text" /> (*必填，至少两位)</dd>
                 <dd>性       别：<input type="radio" name="sex" value="男" checked="checked" /> 男 <input type="radio" name="sex" value="女" /> 女</dd>
                 <dd class="face"><input type="hidden" name="face" value="face/m01.gif" id="face"><img src="face/m01.gif" alt="头像选择" id="faceimg" )"></dd>
                 <dd>电子邮件：<input type="text" name="email" class="text" /></dd>
