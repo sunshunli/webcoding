@@ -14,7 +14,21 @@ if (!defined('IN_TG')) {
 }
 
 if (!function_exists('_alert_back')){
-    exit('函数不存在，请检查！');
+    exit('_alert_back()函数不存在，请检查！');
+}
+
+if (!function_exists('_mysql_string')){
+    exit('_mysql_string()函数不存在，请检查！');
+}
+
+function _check_uniqid($_first_uniqid, $_end_uniqid) {
+
+    if ((strlen($_first_uniqid) != 40) || ($_first_uniqid != $_end_uniqid)) {
+        _alert_back('唯一标识符异常!');
+    }
+
+
+    return _mysql_string($_first_uniqid);
 }
 
 /**
@@ -41,7 +55,7 @@ function _check_username($_string, $_min_num, $_max_num) {
     }
 
     //将用户名转义输入
-    return mysqli_real_escape_string($_string);
+    return _mysql_string($_string);
 }
 
 /**
@@ -77,12 +91,13 @@ function _check_password($_first_pass, $_end_pass, $_min_num=6) {
  * @return string $_string 返回密码提示
  */
 function _check_question($_string, $_min_num, $_max_num) {
+    $_string = trim($_string);
     //长度小于4位或者大于20位
     if (mb_strlen($_string, 'utf-8') < $_min_num || mb_strlen($_string, 'utf-8') > $_max_num) {
         _alert_back('密码提示不得小于'. $_min_num .'位或大于'. $_max_num .'位');
     }
     //返回密码提示
-    return mysql_real_escape_string($_string);
+    return _mysql_string($_string);
 }
 
 function _check_answer($_ques, $_answ, $_min_num, $_max_num) {
@@ -113,7 +128,7 @@ function _check_email($_string) {
             _alert_back('邮件格式不正确!');
         }
     }
-    return $_string;
+    return _mysql_string($_string);
 }
 
 /**
@@ -131,7 +146,7 @@ function _check_qq($_string) {
         }
     }
 
-    return $_string;
+    return _mysql_string($_string);
 }
 
 /**
@@ -149,5 +164,5 @@ function _check_url($_string) {
         }
     }
 
-    return $_string;
+    return _mysql_string($_string);
 }

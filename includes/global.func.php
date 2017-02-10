@@ -20,6 +20,25 @@ function _runtime() {
     return $_mtime[1] + $_mtime[0];
 }
 
+function _sha1_uniqid() {
+    return _mysql_string(sha1(uniqid(rand(), true)));
+}
+
+/**
+ * _mysql_string() 转义字符函数
+ * @access public 表示函数对外公开
+ * @param string $_string
+ * @return string
+ */
+function _mysql_string($_string) {
+    //表单转义判断是否开启
+    if (PHP_VERSION >= 6) {
+        return addslashes($_string);
+    }
+
+    return $_string;
+}
+
 /**
  * _alert_back()表示JS弹窗
  * @access public
@@ -29,6 +48,18 @@ function _runtime() {
 function _alert_back($_info) {
     echo "<script type='text/javascript'>alert('". $_info ."');history.back();</script>";
     exit();
+}
+
+/**
+ * _check_code 验证码比对
+ * @param string $_first_code 机器码
+ * @param string $_end_code 填写的验证码
+ * @return  void
+ */
+function _check_code($_first_code, $_end_code) {
+    if ($_first_code != $_end_code) {
+        _alert_back('验证码不正确!');
+    }
 }
 
 /**
