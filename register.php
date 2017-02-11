@@ -21,7 +21,7 @@ require dirname(__FILE__) . '/includes/common.inc.php';
 //判断是否提交
 if ($_GET['action'] == 'register') {
     //为了防止恶意注册，跨站攻击
-//    _check_code($_POST['code'], $_SESSION['code']);
+    _check_code($_POST['code'], $_SESSION['code']);
 
     //引入验证文件
     include ROOT_PATH . 'includes/register.func.php';
@@ -36,13 +36,56 @@ if ($_GET['action'] == 'register') {
     $_clean['password'] = _check_password($_POST['password'], $_POST['notpassword'], 6);
     $_clean['question'] = _check_question($_POST['question'], 2, 20);
     $_clean['answer'] = _check_answer($_POST['question'], $_POST['answer'], 2, 20);
-    $_clean['sex'] = $_POST['sex'];
-    $_clean['face'] = $_POST['face'];
-    $_clean['email'] = _check_email($_POST['email']);
+    $_clean['sex'] = _check_sex($_POST['sex']);
+    $_clean['face'] = _check_face($_POST['face']);
+    $_clean['email'] = _check_email($_POST['email'], 6, 40);
     $_clean['qq'] = _check_qq($_POST['qq']);
-    $_clean['url'] = _check_url($_POST['url']);
+    $_clean['url'] = _check_url($_POST['url'], 40);
 
-//    print_r($_clean);
+    //在新增用户之前，判断用户名是否重复
+    $query = mysqli_query($_conn, "SELECT tg_username FROM tg_user WHERE tg_username='{$_clean['username']}'");
+    if (mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+        _alert_back('此用户已被注册!');
+    }
+    //将注册的新用户写入数据库
+    mysqli_query($_conn, "INSERT INTO tg_user (
+                                                                                    tg_uniqid,
+                                                                                    tg_active,
+                                                                                    tg_username,
+                                                                                    tg_password,
+                                                                                    tg_question,
+                                                                                    tg_answer,
+                                                                                    tg_email,
+                                                                                    tg_qq,
+                                                                                    tg_url,
+                                                                                    tg_sex,
+                                                                                    tg_face,
+                                                                                    tg_reg_time,
+                                                                                    tg_last_time,
+                                                                                    tg_last_ip
+                                                                                    ) 
+                                                                                    VALUES (
+                                                                                    '{$_clean['uniqid']}',
+                                                                                    '{$_clean['active']}',
+                                                                                    '{$_clean['username']}',
+                                                                                    '{$_clean['password']}',
+                                                                                    '{$_clean['question']}',
+                                                                                    '{$_clean['answer']}',
+                                                                                    '{$_clean['email']}',
+                                                                                    '{$_clean['qq']}',
+                                                                                    '{$_clean['url']}',
+                                                                                    '{$_clean['sex']}',
+                                                                                    '{$_clean['face']}',
+                                                                                    '".date("Y-m-d H:i:s")."',
+                                                                                    '".date("Y-m-d H:i:s")."',
+                                                                                    '{$_SERVER['REMOTE_ADDR']}'
+                                                                                    )"
+
+    ) or die('sql'.mysqli_error($_conn));
+    //关闭数据库
+    mysqli_close($_conn);
+    //跳转
+    _location('恭喜你，注册成功!', 'index.php');
 } else {
     $_SESSION['uniqid'] = $_uniqid = _sha1_uniqid();
 }

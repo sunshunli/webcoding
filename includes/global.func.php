@@ -50,6 +50,10 @@ function _alert_back($_info) {
     exit();
 }
 
+function _location($_info, $_url) {
+    echo "<script type='text/javascript'>alert('". $_info ."');location.href='".$_url."';</script>";
+}
+
 /**
  * _check_code 验证码比对
  * @param string $_first_code 机器码

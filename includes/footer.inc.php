@@ -12,7 +12,8 @@
 if (!defined('IN_TG')) {
     exit('Access Defined!');
 }
-
+//关闭数据库
+mysqli_close($_conn);
 ?>
 <div id="footer">
     <p>本程序执行耗时为：<?php echo round((_runtime() - START_TIME), 4);?>秒</p>

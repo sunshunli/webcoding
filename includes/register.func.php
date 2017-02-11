@@ -101,6 +101,7 @@ function _check_question($_string, $_min_num, $_max_num) {
 }
 
 function _check_answer($_ques, $_answ, $_min_num, $_max_num) {
+    $_answ = trim($_answ);
     //长度小于4位或者大于20位
     if (mb_strlen($_answ, 'utf-8') < $_min_num || mb_strlen($_answ, 'utf-8') > $_max_num) {
         _alert_back('密码回答不得小于'. $_min_num .'位或大于'. $_max_num .'位');
@@ -115,19 +116,42 @@ function _check_answer($_ques, $_answ, $_min_num, $_max_num) {
 }
 
 /**
+ * _check_sex 性别
+ * @param string $_string
+ * @return string
+ */
+function _check_sex($_string) {
+    return _mysql_string($_string);
+}
+
+/**
+ * _check_face 头像
+ * @param string $_string
+ * @return string
+ */
+function _check_face($_string) {
+    return _mysql_string($_string);
+}
+
+/**
  * _check_email() 检查邮箱是否合法
  * @access public
  * @param string $_string 提交的邮箱地址
  * @return string $_string 验证后的邮箱地址
  */
-function _check_email($_string) {
+function _check_email($_string, $_min_num, $_max_num) {
     if (empty($_string)) {
         return null;
     } else {
         if (!preg_match('/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/', $_string)) {
             _alert_back('邮件格式不正确!');
         }
+
+        if (strlen($_string) < $_min_num || strlen($_string) > $_max_num) {
+            _alert_back('邮件长度不合法!');
     }
+    }
+
     return _mysql_string($_string);
 }
 
@@ -155,12 +179,15 @@ function _check_qq($_string) {
  * @param string $_string 网址
  * @return string $_string 返回过滤的网址
  */
-function _check_url($_string) {
+function _check_url($_string, $_max_num) {
     if (empty($_string) || ($_string == 'http://')) {
         return null;
     } else {
         if (!preg_match('/^http(s)?:\/\/(\w+\.)?[\w\-\.]+(\.\w+)+$/', $_string)) {
             _alert_back('网址不正确!');
+        }
+        if (strlen($_string) > $_max_num) {
+            _alert_back('网址太长啦!');
         }
     }
 
