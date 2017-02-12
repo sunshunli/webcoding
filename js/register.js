@@ -44,10 +44,55 @@ window.onload = function() {
             return false;
         }
         //密码提示与回答
-        if (fm.password.value.length < 6) {
-            alert('密码不得小于6位');
-            fm.password.value = '';
-            fm.password.focus();
+        if (fm.question.value.length < 2 || fm.question.value.length > 20) {
+            alert('密码不得小于2位或大于20位!');
+            fm.question.value = '';
+            fm.question.focus();
+            return false;
+        }
+        if (fm.answer.value.length < 2 || fm.answer.value.length > 20) {
+            alert('密码回答不得小于2位或大于20位!');
+            fm.answer.value = '';
+            fm.answer.focus();
+            return false;
+        }
+
+        if (fm.answer.value == fm.question.value.length) {
+            alert('密码提示和回答不可一样!');
+            fm.answer.value = '';
+            fm.answer.focus();
+            return false;
+        }
+        //邮箱验证
+        if (!/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/.test(fm.email.value)) {
+            alert('邮箱格式不正确!');
+            fm.email.value = '';
+            fm.email.focus();
+            return false;
+        }
+        //QQ号码
+        if (fm.qq.value != '') {
+            if (!/^[1-9]{1}[0-9]{4,9}$/.test(fm.qq.value)) {
+                alert('QQ号码不正确!');
+                fm.qq.value = '';
+                fm.qq.focus();
+                return false;
+            }
+        }
+
+        if (fm.url.value != '') {
+            if (!/^http(s)?:\/\/(\w+\.)?[\w\-\.]+(\.\w+)+$/.test(fm.url.value)) {
+                alert('网址不正确!');
+                fm.url.value = '';
+                fm.url.focus();
+                return false;
+            }
+        }
+        //验证码验证
+        if (fm.code.value.length != 4) {
+            alert('验证码必须是4位!');
+            fm.code.value = '';
+            fm.code.focus();
             return false;
         }
         return true;
