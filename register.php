@@ -90,7 +90,6 @@ if ($_GET['action'] == 'register') {
 } else {
     $_SESSION['uniqid'] = $_uniqid = _sha1_uniqid();
 }
-
 ?>
 <!DOCTYPE html>
 <html>
