@@ -72,6 +72,15 @@ function _fetch_array($_conn, $_sql) {
     return mysqli_fetch_array(_query($_conn, $_sql));
 }
 
+
+/**
+ * _affected_rows 表示影响到的记录数
+ * @param $_conn
+ * @return int
+ */
+function _affected_rows($_conn) {
+    return mysqli_affected_rows($_conn);
+}
 /**
  * @param $_sql
  * @param $_info

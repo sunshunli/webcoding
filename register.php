@@ -83,10 +83,15 @@ if ($_GET['action'] == 'register') {
                                                                                     )"
 
     );
-    //关闭数据库
-    _close($_conn);
-    //跳转
-    _location('恭喜你，注册成功!', 'index.php');
+   if (_affected_rows($_conn) == 1) {
+       //关闭数据库
+       _close($_conn);
+       //跳转
+       _location('恭喜你，注册成功!', 'active.php?active=' . $_clean['active']);
+   } else {
+       _close($_conn);
+       _location('很遗憾，注册失败!', 'register.php');
+   }
 } else {
     $_SESSION['uniqid'] = $_uniqid = _sha1_uniqid();
 }
