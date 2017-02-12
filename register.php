@@ -48,7 +48,6 @@ if ($_GET['action'] == 'register') {
         "SELECT tg_username FROM tg_user WHERE tg_username='{$_clean['username']}' LIMIT 1",
         '此用户已被注册!'
     );
-
     //将注册的新用户写入数据库
     _query($_conn, "INSERT INTO tg_user (
                                                                                     tg_uniqid,
