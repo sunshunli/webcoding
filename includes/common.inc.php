@@ -26,6 +26,8 @@ if (PHP_VERSION < '4.1.0') {
 
 //引入核心函数库
 require ROOT_PATH .'includes/global.func.php';
+require ROOT_PATH .'includes/mysql.func.php';
+
 
 //执行耗时
 define('START_TIME', _runtime());
@@ -38,13 +40,13 @@ define('DB_HOST', 'localhost');
 define('DB_NAME', 'testguest');
 
 //创建数据库连接
-$_conn = mysqli_connect(DB_HOST, DB_USER, DB_PWD) or die('数据库连接失败!');
+$_conn = _connect();
 
 //选择一款数据库
-mysqli_select_db($_conn, DB_NAME) or die('指定的数据库不存在!');
+_select_db($_conn);
 
 //选择字符集
-mysqli_query($_conn, 'SET NAMES UTF8') or die('字符集错误!');
+_set_names($_conn);
 
 
 

@@ -43,12 +43,14 @@ if ($_GET['action'] == 'register') {
     $_clean['url'] = _check_url($_POST['url'], 40);
 
     //在新增用户之前，判断用户名是否重复
-    $query = mysqli_query($_conn, "SELECT tg_username FROM tg_user WHERE tg_username='{$_clean['username']}'");
-    if (mysqli_fetch_array($query, MYSQLI_ASSOC)) {
-        _alert_back('此用户已被注册!');
-    }
+    _is_repeat(
+        $_conn,
+        "SELECT tg_username FROM tg_user WHERE tg_username='{$_clean['username']}' LIMIT 1",
+        '此用户已被注册!'
+    );
+
     //将注册的新用户写入数据库
-    mysqli_query($_conn, "INSERT INTO tg_user (
+    _query($_conn, "INSERT INTO tg_user (
                                                                                     tg_uniqid,
                                                                                     tg_active,
                                                                                     tg_username,
@@ -81,9 +83,9 @@ if ($_GET['action'] == 'register') {
                                                                                     '{$_SERVER['REMOTE_ADDR']}'
                                                                                     )"
 
-    ) or die('sql'.mysqli_error($_conn));
+    );
     //关闭数据库
-    mysqli_close($_conn);
+    _close($_conn);
     //跳转
     _location('恭喜你，注册成功!', 'index.php');
 } else {
