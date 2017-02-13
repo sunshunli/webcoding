@@ -3,15 +3,12 @@
  */
 window.onload = function() {
     var faceimg = document.getElementById('faceimg');
-    var code = document.getElementById('code');
+
+    code();
+
     faceimg.onclick = function() {
       window.open('face.php', 'face', 'width=400,height=400,top=0,left=0,scrollbars=1');
     };
-
-    //实现验证码图片单击局部刷新功能
-    code.onclick = function () {
-        this.src='code.php?tm='+Math.random();
-    }
 
     //表单验证
     var fm = document.getElementsByTagName('form')[0];

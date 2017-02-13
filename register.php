@@ -137,6 +137,7 @@ if ($_GET['action'] == 'register') {
         require ROOT_PATH . 'includes/footer.inc.php';
     ?>
 
+    <script type="text/javascript" src="js/code.js"></script>
     <script type="text/javascript" src="js/register.js"></script>
 </body>
 </html>
